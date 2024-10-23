@@ -1,10 +1,10 @@
-package server
+package services
 
 import (
 	"context"
 	"fmt"
-	"github.com/zhulida1234/go-rpc-service.git/protobuf/wallet"
-	addresss "github.com/zhulida1234/go-rpc-service.git/server/address"
+	"github.com/zhulida1234/go-rpc-service/protobuf/wallet"
+	addresss "github.com/zhulida1234/go-rpc-service/server/address"
 	"strconv"
 )
 

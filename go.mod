@@ -1,4 +1,4 @@
-module github.com/zhulida1234/go-rpc-service.git
+module github.com/zhulida1234/go-rpc-service
 
 go 1.22.3
 
@@ -6,6 +6,7 @@ require (
 	github.com/ethereum/go-ethereum v1.14.11
 	google.golang.org/grpc v1.67.1
 	google.golang.org/protobuf v1.35.1
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (

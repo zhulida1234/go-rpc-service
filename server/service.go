@@ -1,8 +1,8 @@
-package server
+package services
 
 import (
 	"fmt"
-	"github.com/zhulida1234/go-rpc-service.git/protobuf/wallet"
+	"github.com/zhulida1234/go-rpc-service/protobuf/wallet"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"net"

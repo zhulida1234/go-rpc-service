@@ -1,9 +1,9 @@
-rpc-service:
+go-rpc-service:
 	env GO111MODULE=on go build $(LDFLAGS)
-.PHONY: rpc-service
+.PHONY: go-rpc-service
 
 clean:
-	rm rpc-service
+	rm go-rpc-service
 
 test:
 	go test -v ./...
