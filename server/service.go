@@ -1,11 +1,14 @@
 package services
 
 import (
+	"context"
 	"fmt"
+	"github.com/zhulida1234/go-rpc-service/database"
 	"github.com/zhulida1234/go-rpc-service/protobuf/wallet"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"net"
+	"sync/atomic"
 )
 
 const MaxRecvMessageSize = 1024 * 1024 * 300
@@ -17,16 +20,31 @@ type RpcServerConfig struct {
 
 type RpcServer struct {
 	*RpcServerConfig
+	db *database.DB
+
 	wallet.UnimplementedWalletServiceServer
+
+	stopped atomic.Bool
 }
 
-func NewRpcServer(config *RpcServerConfig) (*RpcServer, error) {
+func (s *RpcServer) Stop(ctx context.Context) error {
+	s.stopped.Store(true)
+	return nil
+}
+
+func (s *RpcServer) Stopped() bool {
+	//TODO implement me
+	panic("implement me")
+}
+
+func NewRpcServer(db *database.DB, config *RpcServerConfig) (*RpcServer, error) {
 	return &RpcServer{
 		RpcServerConfig: config,
+		db:              db,
 	}, nil
 }
 
-func (s *RpcServer) Start() error {
+func (s *RpcServer) Start(ctx context.Context) error {
 	go func(s *RpcServer) {
 		addr := fmt.Sprintf("%s:%d", s.GrpcHostname, s.GrpcPort)
 		fmt.Println("start rpc server", "addr", addr)
